@@ -63,20 +63,17 @@ function relocateTurtle()
     checkFuel()
     turtle.forward()
     turtle.turnRight()
-    switchLines()
+    switchLine(4)
     turtle.turnRight()
     checkFuel()
 end
 
-function switchLines(count)
+function switchLine(count)
     for iter = 1,count do
         turtle.forward()
     end
 end
-
-local depth = 15
-local chopping = true
-while chopping do
+function runner()
     turtle.forward()
     depth = depth - 1
 
@@ -88,11 +85,26 @@ while chopping do
     tasks()
 
     turtle.turnLeft()
+end
 
+local depth = 15
+local chopping = true
+while chopping do
+    while depth > 0 do
+        runner()
+    end
     if depth == 0 then
         relocateTurtle()
         depth = 15
     end
+
+    while depth > 0 do
+        runner()
+    end
+    
+    turtle.foward()
+    chopping = false
+
 end
 
 
