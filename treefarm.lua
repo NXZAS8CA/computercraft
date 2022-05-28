@@ -106,21 +106,24 @@ end
 
 local chopping = true
 while chopping do
-    while depth > 0 do
-        runner()
-    end
+    runner()
+    
+    
+    --while depth > 0 do
+    --    runner()
+    --end
 
-    if depth == 0 then
-        relocateTurtle()
-        depth = 15
-    end
+    --if depth == 0 then
+    --    relocateTurtle()
+    --    depth = 15
+    --end
 
-    while depth > 0 do
-        runner()
-    end
-    moveToChest()
-    transferInventory()
-    chopping = false
+    --while depth > 0 do
+    --    runner()
+    --end
+    --moveToChest()
+    --transferInventory()
+    --chopping = false
 end
 
 
