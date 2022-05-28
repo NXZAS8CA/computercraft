@@ -74,7 +74,6 @@ function switchLine(count)
     end
 end
 
-local depth = 15
 function moveToChest()
     print("Moving to Chest")
     turtle.forward()
@@ -82,10 +81,18 @@ function moveToChest()
     for iter = 1,7 do
         turtle.forward()
     end
-    turtle.turnRight()
-
+    turtle.turnRight()    
 end
 
+function transferInventory()
+    print("Dropping Inventory")
+    for inventory = 2,9 do
+        turtle.select(inventory)
+        turtle.drop()
+    end
+end
+
+local depth = 15
 function runner()
     turtle.forward()
     depth = depth - 1
@@ -116,13 +123,4 @@ while chopping do
     
     moveToChest()
     chopping = false
-
 end
-
-
-
-
-
-
-
-
