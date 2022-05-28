@@ -28,7 +28,7 @@ function checkSapling()
 end
 
 function chopTree()
-    print("Chopping")
+    print("Chopping...")
     turtle.dig()
     turtle.forward()
     while turtle.detectUp() == true do
@@ -86,7 +86,7 @@ end
 
 function transferInventory()
     print("Dropping Inventory")
-    for inventory = 2,9 do
+    for inventory = 1,9 do
         turtle.select(inventory)
         turtle.drop()
     end
