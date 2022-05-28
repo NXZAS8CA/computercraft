@@ -1,5 +1,5 @@
 function checkFuel()
-    local fuelLevel = turtle.getFuelLevl()
+    local fuelLevel = turtle.getFuelLevel()
     if fuelLevel < 20 then 
         turtle.select(1)
         turtle.refuel()
@@ -18,7 +18,7 @@ end
 
 function checkSapling()
     local success, data = turtle.inspect()
-    if data.name == "minecraft:birch_sapling"
+    if data.name == "minecraft:birch_sapling" then
         print("Sapling detected")
         return true
     else return false 
@@ -50,7 +50,7 @@ function relocateTurtle()
     checkFuel()
     turtle.forward()
     turtle.turnRight()
-    switchLines()
+    switchLines(4)
     turtle.turnRight()
     checkFuel()
 end
@@ -104,15 +104,24 @@ function runner()
     turtle.turnLeft()
 end
 
-runner()
-if depth == 0 then
-    relocateTurtle()
-    depth = 15
-end
-runner()
-moveToChest()
-transferInventory()
+local chopping = true
+while chopping do
+    while depth > 0 do
+        runner()
+    end
 
+    if depth == 0 then
+        relocateTurtle()
+        depth = 15
+    end
+
+    while depth > 0 do
+        runner()
+    end
+    moveToChest()
+    transferInventory()
+    chopping = false
+end
 
 
 
