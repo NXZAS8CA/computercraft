@@ -10,7 +10,7 @@ end
 function checkTree()
     print("Checking...")
     local success, data = turtle.inspect()
-    if data.name == "minecraft:brich_log" then
+    if data.name == "minecraft:birch_log" then
         print("Tree detected")
         return true
     end
