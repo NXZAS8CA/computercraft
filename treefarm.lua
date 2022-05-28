@@ -95,7 +95,11 @@ function runner()
     depth = depth - 1
     
     turtle.turnLeft()
-    tasks()
+    
+    if checkTree() then
+        chopTree()
+    end
+    --tasks()
     
     turtle.turnRight()
     turtle.turnRight()
