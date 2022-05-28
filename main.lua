@@ -1,5 +1,5 @@
-function fuelCheck()
-    local fuelLevel = turtle.getFuelLevl()
+function checkFuel()
+    local fuelLevel = turtle.getFuelLevel()
     if fuelLevel < 20 then 
         turtle.select(1)
         turtle.refuel()
@@ -8,6 +8,7 @@ function fuelCheck()
 end
 
 function checkTree()
+    print("Cecking...")
     local success, data = turtle.inspect()
     if data.name == "minecraft:brich_log" then
         print("Tree detected")
@@ -17,8 +18,9 @@ function checkTree()
 end
 
 function checkSapling()
+    print("Checking...")
     local success, data = turtle.inspect()
-    if data.name == "minecraft:birch_sapling"
+    if data.name == "minecraft:birch_sapling" then
         print("Sapling detected")
         return true
     else return false 
@@ -26,7 +28,7 @@ function checkSapling()
 end
 
 function chopTree()
-    print("Chopping")
+    print("Chopping...")
     turtle.dig()
     turtle.forward()
     while turtle.detectUp() == true do
@@ -47,30 +49,29 @@ function setSapling()
 end
 
 function tasks()
-    fuelCheck()
+    checkFuel()
     if checkTree() then
         chopTree()
     end
 
     turtle.suck()
     turtle.suckUp()
-    fuelCheck()
+    checkFuel()
 end
 
 function relocateTurtle()
-    fuelCheck()
+    checkFuel()
     turtle.forward()
     turtle.turnRight()
-    switchLines()
+    switchLines(4)
     turtle.turnRight()
-    fuelCheck()
+    checkFuel()
 end
 
-function switchLines()
-    turtle.forward()
-    turtle.forward()
-    turtle.forward()
-    turtle.forward()
+function switchLines(count)
+    for iter = 1,count do
+        turtle.forward() then
+    end
 end
 
 local depth = 15
@@ -79,16 +80,16 @@ while chopping do
     turtle.forward()
     depth = depth - 1
 
-    turtle.turnLeft()
+     thenturtle.turnLeft()
     tasks()
 
-    turtle.turnRight()
+ then    turtle.turnRight()
     turtle.turnRight()
     tasks()
 
     turtle.turnLeft()
 
-    if depth == 0 then
+ then    if depth == 0 then
         relocateTurtle()
         depth = 15
     end
