@@ -73,44 +73,48 @@ function switchLine(count)
         turtle.forward()
     end
 end
+
 local depth = 15
+function moveToChest()
+    print("Moving to Chest")
+    turtle.forward()
+    turtle.turnLeft()
+    for iter = 1,7 do
+        turtle.forward()
+    end
+    turtle.turnRight()
+
+end
+
+function runner()
+    turtle.forward()
+    depth = depth - 1
+
+    turtle.turnLeft()
+    tasks()
+
+    turtle.turnRight()
+    turtle.turnRight()
+    tasks()
+
+    turtle.turnLeft()
+end
 
 local chopping = true
 while chopping do
     while depth > 0 do
-        turtle.forward()
-        depth = depth - 1
-
-        turtle.turnLeft()
-        tasks()
-
-        turtle.turnRight()
-        turtle.turnRight()
-        tasks()
-
-        turtle.turnLeft()
+        runner()
     end
-    
     if depth == 0 then
         relocateTurtle()
         depth = 15
     end
 
     while depth > 0 do
-        turtle.forward()
-        depth = depth - 1
-
-        turtle.turnLeft()
-        tasks()
-
-        turtle.turnRight()
-        turtle.turnRight()
-        tasks()
-
-        turtle.turnLeft()
+        runner()
     end
     
-    turtle.foward()
+    moveToChest()
     chopping = false
 
 end
