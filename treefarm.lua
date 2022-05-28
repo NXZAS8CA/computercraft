@@ -1,4 +1,4 @@
-function fuelCheck()
+function checkFuel()
     local fuelLevel = turtle.getFuelLevl()
     if fuelLevel < 20 then 
         turtle.select(1)
@@ -46,53 +46,72 @@ function setSapling()
     turtle.select(1)
 end
 
+function relocateTurtle()
+    checkFuel()
+    turtle.forward()
+    turtle.turnRight()
+    switchLines()
+    turtle.turnRight()
+    checkFuel()
+end
+
+function switchLines(count)
+    for iter = 1, count do
+        turtle.forward()
+    end
+end
+
+function transferInventory()
+    print("Dropping inventory")
+    for inventory = 2,9 do
+        turtle.select(inventory)
+        turtle.drop()
+    end
+end
+
+function moveToChest()
+    turtle.forward()
+    turtle.turnLeft()
+    for iter = 1, 7 do
+        turtle.forward()
+    end
+    turtle.turnRight()
+end
+
 function tasks()
-    fuelCheck()
+    checkFuel()
     if checkTree() then
         chopTree()
     end
 
     turtle.suck()
     turtle.suckUp()
-    fuelCheck()
-end
-
-function relocateTurtle()
-    fuelCheck()
-    turtle.forward()
-    turtle.turnRight()
-    switchLines()
-    turtle.turnRight()
-    fuelCheck()
-end
-
-function switchLines()
-    turtle.forward()
-    turtle.forward()
-    turtle.forward()
-    turtle.forward()
+    checkFuel()
 end
 
 local depth = 15
-local chopping = true
-while chopping do
+function runner()
     turtle.forward()
     depth = depth - 1
-
+    
     turtle.turnLeft()
     tasks()
-
+    
     turtle.turnRight()
     turtle.turnRight()
     tasks()
-
+    
     turtle.turnLeft()
-
-    if depth == 0 then
-        relocateTurtle()
-        depth = 15
-    end
 end
+
+runner()
+if depth == 0 then
+    relocateTurtle()
+    depth = 15
+end
+runner()
+moveToChest()
+transferInventory()
 
 
 
