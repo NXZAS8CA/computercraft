@@ -73,6 +73,8 @@ function switchLine(count)
         turtle.forward()
     end
 end
+local depth = 15
+
 function runner()
     turtle.forward()
     depth = depth - 1
@@ -87,7 +89,6 @@ function runner()
     turtle.turnLeft()
 end
 
-local depth = 15
 local chopping = true
 while chopping do
     while depth > 0 do
