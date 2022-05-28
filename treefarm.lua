@@ -86,7 +86,7 @@ end
 
 function transferInventory()
     print("Dropping Inventory")
-    for inventory = 1,9 do
+    for inventory = 2,16 do
         turtle.select(inventory)
         turtle.drop()
     end
@@ -122,5 +122,6 @@ while chopping do
     end
     
     moveToChest()
+    transferInventory()
     chopping = false
 end
