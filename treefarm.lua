@@ -75,32 +75,39 @@ function switchLine(count)
 end
 local depth = 15
 
-function runner()
-    turtle.forward()
-    depth = depth - 1
-
-    turtle.turnLeft()
-    tasks()
-
-    turtle.turnRight()
-    turtle.turnRight()
-    tasks()
-
-    turtle.turnLeft()
-end
-
 local chopping = true
 while chopping do
     while depth > 0 do
-        runner()
+        turtle.forward()
+        depth = depth - 1
+
+        turtle.turnLeft()
+        tasks()
+
+        turtle.turnRight()
+        turtle.turnRight()
+        tasks()
+
+        turtle.turnLeft()
     end
+    
     if depth == 0 then
         relocateTurtle()
         depth = 15
     end
 
     while depth > 0 do
-        runner()
+        turtle.forward()
+        depth = depth - 1
+
+        turtle.turnLeft()
+        tasks()
+
+        turtle.turnRight()
+        turtle.turnRight()
+        tasks()
+
+        turtle.turnLeft()
     end
     
     turtle.foward()
